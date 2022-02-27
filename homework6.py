@@ -12,8 +12,21 @@ class TwitterPositive():
 
         neg_words = readFile("negative-words.txt")
         pos_words = readfile("positive-words.txt")
-        return 0.5
-        pass
+        score = 0.5
+        
+        for word in tweet: 
+            
+            if word in pos_words: 
+                score += 0.05
+            if word in neg_words:
+                score -= 0.05
+            
+        if score > 1.0:
+            score = 1.0
+        if score < 0.0:
+            score = 0.0
+        
+        return score 
 
     def readFile(self):
         file = open(fileName, "r")  
