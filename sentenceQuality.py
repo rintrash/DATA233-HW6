@@ -13,17 +13,15 @@ class textScores():
         
         self.polarity = self.getPolarity()
         self.subjectivity = self.getSubjectivity()
-#         self.length = self.getLength()
-#         self.repetitiveness = self.getRepetitiveness()
+        self.length = self.getLength()
+        self.readability = self.getReadability()
+        
         self.printResult()
         
     def printResult(self):
         
-        print("Polarity Score: " + str(self.polarity) + "\n")
-        print("Subjectivity Score: " + str(self.subjectivity) + "\n")
-#         print("Length Score: " + self.length + "\n")
-#         print("Repetitiveness Score (High is Bad): " + self.repetitiveness)
-    
+        print([self.length, self.polarity, self.subjectivity, self.readability])
+        
     def getPolarity(self):
         
         self.pol = self.b.sentiment.polarity
