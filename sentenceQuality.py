@@ -5,7 +5,7 @@
 
 from textblob import TextBlob as tb
 
-class textScores():
+class calculateScores():
     
     def __init__(self, text):
         
@@ -18,9 +18,9 @@ class textScores():
         
         self.printResult()
         
-    def printResult(self):
+    def returnResult(self):
         
-        print([self.length, self.polarity, self.subjectivity, self.readability])
+        return [self.length, self.polarity, self.subjectivity, self.readability]
         
     def getPolarity(self):
         
