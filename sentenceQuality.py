@@ -16,7 +16,7 @@ class calculateScores():
         self.length = self.getLength()
         self.readability = self.getReadability()
         
-        self.printResult()
+        self.returnResult()
         
     def returnResult(self):
         
