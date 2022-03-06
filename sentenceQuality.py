@@ -41,14 +41,12 @@ class textScores():
         return self.sub
     
     def getLength(self):
-        # DO MORE STUFF HERE
-        if len(b) > 280:
-            self.length = 280
+        words = self.b.split()
+        if len(words) > 20:
+            return 1.0
+        else:
+            return len(words) / 20
             
-
-
-
-
 
 # class sentenceQuality():
 #     def __init__(self):
