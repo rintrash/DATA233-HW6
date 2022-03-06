@@ -1,6 +1,6 @@
-# name 1:
-# name 2:
-# name 3:
+# name 1: Angela You
+# name 2: Anyah Arboine
+# name 3: Travis McDaneld
 
 
 class sentenceQuality():
