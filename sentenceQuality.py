@@ -21,6 +21,10 @@ class sentenceQuality():
     def calculateScores(self):
         
         return [self.length, self.polarity, self.subjectivity, self.readability]
+    
+    def calculateQuality(self):
+        
+        return sum(self.calculateScores()) / 4
         
     def getPolarity(self):
         
