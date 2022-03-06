@@ -5,7 +5,7 @@
 
 from textblob import TextBlob as tb
 
-class calculateScores():
+class sentenceQuality():
     
     def __init__(self, text):
         
@@ -16,9 +16,9 @@ class calculateScores():
         self.length = self.getLength()
         self.readability = self.getReadability()
         
-        self.returnResult()
+        self.calculateScores()
         
-    def returnResult(self):
+    def calculateScores(self):
         
         return [self.length, self.polarity, self.subjectivity, self.readability]
         
