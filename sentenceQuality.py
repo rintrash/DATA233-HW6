@@ -88,9 +88,9 @@ class sentenceQuality():
 
 
 # # this is for testing only
-# obj = sentenceQuality()
-# s = "DATA 233 is a wonderful class!"
+s = "DATA 233 is a wonderful class!"
+obj = sentenceQuality(s)
 
-# print("The scores for your input is " + str(obj.calculateScores(s)))
+print("The scores for your input is " + str(obj.calculateScores()))
 
-# print("The final quality for your input is " + str(obj.calculateQuality(obj.calculateScores(s))))
+print("The final quality for your input is " + str(obj.calculateQuality(obj.calculateScores())))
