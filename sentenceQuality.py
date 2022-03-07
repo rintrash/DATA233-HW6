@@ -5,93 +5,61 @@
 
 from textblob import TextBlob as tb
 
+
 class sentenceQuality():
-    
-    def __init__(self, text):
-        
-        self.b = tb(text)
-        
-        self.polarity = self.getPolarity()
-        self.subjectivity = self.getSubjectivity()
-        self.length = self.getLength()
-        self.readability = self.getReadability()
-        
-        self.calculateScores()
-        
-    def calculateScores(self):
-        
-        return [self.length, self.polarity, self.subjectivity, self.readability]
-    
-    def calculateQuality(self):
-        
-        return sum(self.calculateScores()) / 4
-        
-    def getPolarity(self):
-        
-        self.pol = self.b.sentiment.polarity
-        if self.pol < 0:
-            true_pol = 0.5 - (abs(self.pol)/2)
-        elif self.pol > 0:
-            true_pol = 0.5 + (self.pol/2)
+
+    def __init__(self):
+        pass
+
+    def calculateScores(self, text):
+        # please implement this function
+        # input: any tweet text
+        # output: a list of scores for the tweet, it must include: score for length, score for Polarity,
+        # score for Subjectivity, and at least readability score
+        b = tb(text)
+
+        #length
+        words = b.split()
+        length_score = 0.0
+        if len(words) > 20:
+            length_score = 1.0
+        else:
+            length_score = len(words) / 20
+
+        #polarity
+        pol = b.sentiment.polarity
+        if pol < 0:
+            true_pol = 0.5 - (abs(pol) / 2)
+        elif pol > 0:
+            true_pol = 0.5 + (pol / 2)
         else:
             true_pol = 0.5
-        return true_pol
-    
-    def getSubjectivity(self):
-        
-        self.sub = self.b.subjectivity
-        return self.sub
-    
-    def getLength(self):
-        words = self.b.split()
-        if len(words) > 20:
-            return 1.0
-        else:
-            return len(words) / 20
-        
-        
-   def getReadability(self):
-        lines = self.b.split(".")
-        words = self.b.split(' ')
-        characters = len(self.b.replace("."," "))
-        ARIvalue = 4.71*(characters/len(words)) + (0.5*(len(words)/len(lines))) - 21.43
-        value = round(ARIvalue) - 1
-        return value/13
-            
 
-# class sentenceQuality():
-#     def __init__(self):
-#         # do some initialization, optional
-#         pass
+        #subjectivity
+        subjectivity = b.subjectivity
 
-#     def calculateScores(self, tweet):
-#         # please implement this function
-#         # input: any tweet text
-#         # output: a list of scores for the tweet, it must include: score for length, score for Polarity, score for Subjectivity, and at least one score of the following:
-#         # https://en.wikipedia.org/wiki/Automated_readability_index
-#         # https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests
-#         # https://en.wikipedia.org/wiki/Gunning_fog_index
-#         # https://en.wikipedia.org/wiki/SMOG
-#         # https://en.wikipedia.org/wiki/Fry_readability_formula
-#         # https://en.wikipedia.org/wiki/Coleman%E2%80%93Liau_index
-#         # You should implement at least one score
+        #readability
+        lines = b.split(".")
+        words = b.split(' ')
+        characters = len(b.replace(".", " "))
+        ARIvalue = 4.71 * (characters / len(words)) + (0.5 * (len(words) / len(lines))) - 21.43
+        readability_score = (round(ARIvalue) - 1) / 13
 
-#         return [0.1, 0.2, 0.3, 0.5, 0.6]
-#         pass
+        return [length_score, true_pol, subjectivity,
+                readability_score]
 
-#     def calculateQuality(self, scores):
-#         # please implement this function to calculate a final quality score between 0 and 1
-#         # Input: a list of scores, which is the output of calculateScores
-#         # output: 0 means low quality, 1 mean high quality
+    def calculateQuality(self, text):
+        # please implement this function to calculate a final quality score between 0 and 1
+        # Input: a list of scores, which is the output of calculateScores
+        # output: 0 means low quality, 1 mean high quality
 
-#         return 0.5
-#         pass
+        return sum(self.calculateScores(text)) / 4
 
 
 # # this is for testing only
-s = "DATA 233 is a wonderful class!"
-obj = sentenceQuality(s)
+s = "DATA 233 is a wonderful class! We do projects, like this, where we try to calculate quality"
+obj = sentenceQuality()
 
-print("The scores for your input is " + str(obj.calculateScores()))
+print("The scores for your input is " + str(obj.calculateScores(s)))
 
-print("The final quality for your input is " + str(obj.calculateQuality(obj.calculateScores())))
+print("The final quality for your input is " + str(obj.calculateQuality(s)))
