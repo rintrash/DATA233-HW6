@@ -53,8 +53,10 @@ class sentenceQuality():
         characters = len(text.replace("."," "))
         ARIvalue = 4.71*(characters/len(words)) + (0.5*(len(words)/len(lines))) - 21.43
         value = round(ARIvalue) - 1
-        return value/13
-
+        trueValue = value/13
+        if trueValue > 1:
+            trueValue = 1
+        return trueValue
 
 # # this is for testing only
 s = "DATA 233 is a wonderful class! We do projects, like this, where we try to calculate quality"
