@@ -50,12 +50,13 @@ class sentenceQuality():
             return len(words) / 20
         
         
-    def getReadability(self, tweet):
-        lines = tweet.split(".")
-        words = tweet.split(' ')
-        characters = len(tweet.replace("."," "))
+   def getReadability(self):
+        lines = self.b.split(".")
+        words = self.b.split(' ')
+        characters = len(self.b.replace("."," "))
         ARIvalue = 4.71*(characters/len(words)) + (0.5*(len(words)/len(lines))) - 21.43
-        return round(ARIvalue)
+        value = round(ARIvalue) - 1
+        return value/13
             
 
 # class sentenceQuality():
