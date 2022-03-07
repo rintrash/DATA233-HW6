@@ -59,9 +59,9 @@ class sentenceQuality():
         return trueValue
 
 # # this is for testing only
-s = "DATA 233 is a wonderful class! We do projects, like this, where we try to calculate quality"
-obj = sentenceQuality()
+# obj = sentenceQuality()
+# s = "good, great, wonderful, happy"
 
-print("The scores for your input is " + str(obj.calculateScores(s)))
+# print("The scores for your input is " + str(obj.calculateScores(s)))
 
-print("The final quality for your input is " + str(obj.calculateQuality(s)))
+# print("The final quality for your input is " + str(obj.calculateQuality(obj.calculateScores(s))))
