@@ -48,6 +48,14 @@ class sentenceQuality():
             return 1.0
         else:
             return len(words) / 20
+        
+        
+    def calculateARI(self, tweet):
+        lines = tweet.split(".")
+        words = tweet.split(' ')
+        characters = len(tweet.replace("."," "))
+        ARIvalue = 4.71*(characters/len(words)) + (0.5*(len(words)/len(lines))) - 21.43
+        return round(ARIvalue)
             
 
 # class sentenceQuality():
