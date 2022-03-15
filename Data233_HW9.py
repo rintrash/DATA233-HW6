@@ -163,10 +163,10 @@ from typing import TypeVar, List, Tuple
 X = TypeVar('X') # This is a generic type to represent a data point
 
 def split_data(data: List[X], prob: float) -> Tuple[List[X], List[X]]:
-    """This function splits the data into pieces"""
-    
-    
-    pass 
+    data = data[:]
+    random.shuffle(data)
+    cut = int(len(data) * prob)
+    return data[:cut], data[cut:]
 
 data = [n for n in range(1000)]               # List of values ranging from 0 to 1000
 train, test = split_data(data, 0.75)
