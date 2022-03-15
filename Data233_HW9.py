@@ -4,6 +4,9 @@ Date: 3/10
 Class DATA 233, Dr. Cao
 Project: HW9: K Nearest Neighbor
 '''
+
+### Not using now, saving for later
+
 # from sklearn.neighbors import KNeighborsClassifier
 # from sklearn.model_selection import train_test_split
 
@@ -26,40 +29,45 @@ Project: HW9: K Nearest Neighbor
 #   pass
 
 
+
+
+### Not using this now, saving for later
+
+# class textModel():
+    
+#     def __init__(self, k, df):
+        
+#         # X is all data without scores, y is just scores
+#         self.X = df.drop('scores', axis=1)
+#         self.y = df['scores'].values
+        
+#         # Splits into training/testing data
+#         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size = 0.3, random_state=42, stratify=self.y)
+#         self.knn = KNeighborsClassifier(n_neighbors=k)
+        
+#         # Fits data into classifier
+#         self.knn.fit(self.X_train, self.y_train)
+        
+#         self.assess()
+        
+# #         new_prediction = knn.predict(X_new)
+# #         print("Prediction: {}".format(new_prediction))
+    
+#     def assess(self):
+        
+#         print(knn.score(X_test, y_test))
+    
+#     def predict(self):
+#         pass
+# #         self.y_pred = knn.predict(X)
+
+
 import math
 import statistics
 import pandas as pd
 from textblob import TextBlob as tb
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
-
-class textModel():
-    
-    def __init__(self, k, df):
-        
-        # X is all data without scores, y is just scores
-        self.X = df.drop('scores', axis=1)
-        self.y = df['scores'].values
-        
-        # Splits into training/testing data
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size = 0.3, random_state=42, stratify=self.y)
-        self.knn = KNeighborsClassifier(n_neighbors=k)
-        
-        # Fits data into classifier
-        self.knn.fit(self.X_train, self.y_train)
-        
-        self.assess()
-        
-#         new_prediction = knn.predict(X_new)
-#         print("Prediction: {}".format(new_prediction))
-    
-    def assess(self):
-        
-        print(knn.score(X_test, y_test))
-    
-    def predict(self):
-        pass
-#         self.y_pred = knn.predict(X)
 
 
 df = pd.read_csv('kaggle_data.csv')
@@ -140,9 +148,6 @@ textValues = list(textValues)
 
 data = {'texts':textValues, 'scores':scores}
 df = pd.DataFrame(data)
-
-
-textModel(5, df)
 
 
 
