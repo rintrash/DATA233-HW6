@@ -135,12 +135,20 @@ class sentenceScore():
 
 
 scores = []
+quality = []
+other = []
 for text in textValues:
     if type(text) == float:
         text = ""
-        scores.append(sentenceScore(text))
-    else:
-        scores.append(sentenceScore(text))
+    score = sentenceScore(text)
+    all_scores = [score.calculateScore(), score.getPolarity(),
+                  score.getSubjectivity(), score.getLength(), score.getReadability()]
+    quality.append(all_scores[0])
+    other.append(all_scores[1:])
+    #scores.append(all_scores)
+
+print(quality[:5])
+print(other[:5])
         
         
 textValues = list(textValues)
