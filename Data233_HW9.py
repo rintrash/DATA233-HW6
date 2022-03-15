@@ -189,7 +189,13 @@ def train_test_split(xs: List[X],
                     ys: List[Y], 
                     test_pct: float) -> Tuple[List[X], List[X], List[Y], List[Y]]:
     #Generate indices to be split
+    idxs = [i for i in range(len(xs))]
+    train_idxs, test_idxs = split_data(idxs, 1 - test-pct)
     
+    return([xs[i] for i in train_idxs], 
+           [xs[i] for i in test_idxs],
+           [ys[i] for i in train_idxs],
+           [ys[i] for i in test_idxs],)
     pass
 
 ##########################################
