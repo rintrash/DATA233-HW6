@@ -3,19 +3,39 @@
 # name 3: Angela You
 
 
-def tokenize(text: str) -> Set[str]:
-    text = text.lower()                         # Convert to lowercase,
-    all_words = re.findall("[a-z0-9']+", text)  # extract the words, and
-    return set(all_words)                       # remove duplicates.
+# create a simple function to tokenize messages into distinct words
+import numpy as np
+import pandas as pd
+from sklearn.naive_bayes import MultinomialNB
 
 class NBsentenceQuality():
     def __init__(self):
         # do some initialization, optional
         pass
-    def trainNB(self, trainingData, NBmodel):
+    def trainNB(self):
         # traing a NB model on the training dataset, your group should find a training dataset with three different qualities
 
-        pass
+        self.readCSV('kaggle_data.csv')
+
+    def readCSV(self, csv):
+        df = pd.read_csv('kaggle_data.csv')
+        #texts = df['external_text']        #do we need this?
+        texts = df['external_text'].values  #numpy representation of texts
+        targets = df['target'].values       #numpy representation of targets
+
+        target_values = []                   #the good, ok, bad representation of targets
+        for target in targets:
+            if target > -0.4:
+                target_values.append(1)
+            elif target > -1.5:
+                target_values.append(0)
+            else:
+                target_values.append(-1)
+
+        #DEBUGGING CODE
+        #print("texts: " + texts[:2])
+        #print("targets:", target_values[:2])
+        return texts, target_values
 
     def Quality_NB(self, sentence, NBmodel):
         # please implement this function to classify the sentence into three different classes: high, low, and medium quality
@@ -26,11 +46,8 @@ class NBsentenceQuality():
         return 0
         pass
 
-
-
-
 # this is for testing only
 obj = NBsentenceQuality()
 s = "DATA 233 is a wonderful class!"
-
-print("The final quality for your input using NB is " + str(obj.Quality_NB(s)))
+obj.trainNB()
+#print("The final quality for your input using NB is " + str(obj.Quality_NB(s)))
