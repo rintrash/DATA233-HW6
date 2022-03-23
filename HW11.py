@@ -10,20 +10,22 @@ from sklearn.naive_bayes import MultinomialNB
 
 class NBsentenceQuality():
     def __init__(self):
-        # do some initialization, optional
-        pass
+        self.clf = MultinomialNB()
+
     def trainNB(self):
         # traing a NB model on the training dataset, your group should find a training dataset with three different qualities
+        csv_data = self.readCSV('kaggle_data.csv')
+        X = csv_data[0] #the texts
+        y = csv_data[1] #the target values
 
-        self.readCSV('kaggle_data.csv')
+        self.clf.fit(X,y)
 
     def readCSV(self, csv):
         df = pd.read_csv(csv)
-        #texts = df['external_text']        #do we need this?
         texts = df['external_text'].values  #numpy representation of texts
         targets = df['target'].values       #numpy representation of targets
 
-        target_values = []                   #the good, ok, bad representation of targets
+        target_values = []                  #the good, ok, bad representation of targets
         for target in targets:
             if target > -0.4:
                 target_values.append(1)
@@ -37,17 +39,17 @@ class NBsentenceQuality():
         #print("targets:", target_values[:2])
         return texts, target_values
 
-    def Quality_NB(self, sentence, NBmodel):
+    def Quality_NB(self, sentence):
         # please implement this function to classify the sentence into three different classes: high, low, and medium quality
         # Input: sentence
         # output: -1 means low quality, 0 means medium quality, 1 means high quality
         # notes: you can reuse the code from the class about NB, and you can add more functions in this class as needed
+        self.trainNB()
 
-        return 0
-        pass
+        return self.clf.predict(sentence)
 
 # this is for testing only
 obj = NBsentenceQuality()
 s = "DATA 233 is a wonderful class!"
 obj.trainNB()
-#print("The final quality for your input using NB is " + str(obj.Quality_NB(s)))
+print("The final quality for your input using NB is " + str(obj.Quality_NB(s)))
