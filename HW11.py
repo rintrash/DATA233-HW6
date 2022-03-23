@@ -18,7 +18,7 @@ class NBsentenceQuality():
         self.readCSV('kaggle_data.csv')
 
     def readCSV(self, csv):
-        df = pd.read_csv('kaggle_data.csv')
+        df = pd.read_csv(csv)
         #texts = df['external_text']        #do we need this?
         texts = df['external_text'].values  #numpy representation of texts
         targets = df['target'].values       #numpy representation of targets
